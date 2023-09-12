@@ -1,15 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import { DisplayTable, MainPage } from "components";
+import { RouteConstant } from "./routeConstant";
 
 const router = createBrowserRouter([
    {
-      path: "/",
+      path: RouteConstant.mainPage,
       element: <MainPage />,
       
    },
    {
-      path: "/productTable",
+      path: RouteConstant.displayTable,
       element: <DisplayTable />
    }
 ]);
