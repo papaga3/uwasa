@@ -8,6 +8,7 @@ export const MainPage: FC = () => {
    return (
       <div>
          <Link to={displayLinkString}> Display Table </Link>
+         
          <Link to="/">Home</Link>
       </div>
    );

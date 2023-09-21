@@ -1,9 +1,9 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, createHashRouter } from "react-router-dom";
 
 import { DisplayTable, MainPage } from "components";
 import { RouteEnum } from "./routeConstant";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
    {
       path: RouteEnum.mainPage,
       element: <MainPage />,
