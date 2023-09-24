@@ -1,12 +1,12 @@
-import { createBrowserRouter, createHashRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 
-import { DisplayTable, MainPage } from "components";
+import { DisplayTable, NavBar } from "components";
 import { RouteEnum } from "./routeConstant";
 
 const router = createHashRouter([
    {
       path: RouteEnum.mainPage,
-      element: <MainPage />,
+      element: <div> <NavBar /> </div>,
       
    },
    {

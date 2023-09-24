@@ -3,6 +3,7 @@ import { FC } from "react";
 
 import _data from "../data/data.json";
 import { DataRow } from "../types";
+import { NavBar } from "./NavBar";
 
 interface Props {};
 
@@ -24,6 +25,7 @@ export const DisplayTable: FC<Props> = () => {
    console.log(data);
    return (
       <div>
+         <NavBar />
          <h1> Demo table </h1>
          <DataGrid 
             rows={data} 
