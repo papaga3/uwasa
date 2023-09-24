@@ -1,0 +1,94 @@
+[
+   {
+      "name": "RONKMI",
+      "connections": [
+         { "name": "ATRKJI", "distance": 484 }
+      ]
+   },
+   {
+      "name": "ATRNMB",
+      "connections": [
+         { "name": "ATRKJI", "distance": 84 }
+      ]
+   },
+   {
+      "name": "SNEPIE",
+      "connections": [
+         { "name": "ATRKJI", "distance": 172 },
+         { "name": "AVAKST", "distance": 58 }
+      ]
+   },
+   {
+      "name": "HKSRAU",
+      "connections": [
+         { "name": "Honkajoki", "distance": 124 },
+         { "name": "LKASKL", "distance": 36}
+      ]
+   },
+   {
+      "name": "ATRKJI",
+      "connections": [
+         { "name": "Honkajoki", "distance": 56 }
+      ]
+   },
+   {
+      "name": "AVAKST",
+      "connections": [
+         { "name": "ATRKJI", "distance": 166 }
+      ]
+   },
+   {
+      "name": "LKASKL",
+      "connections": [
+         { "name": "Honkajoki", "distance": 141 }
+      ]
+   },
+   {
+      "name": "Honkajoki",
+      "connections": []
+   },
+   {
+      "name": "TAPTAM",
+      "connections": [
+         { "name": "Honkajoki", "distance": 116 }
+      ]
+   },
+   {
+      "name": "ATRSHL",
+      "connections": [
+         { "name": "TAPTAM", "distance": 35 }
+      ]
+   },
+   {
+      "name": "HKSFRS",
+      "connections": [
+         { "name": "TAPTAM", "distance": 94 },
+         { "name": "Honkajoki", "distance": 176 }
+      ]
+   },
+   {
+      "name": "AVAFRS",
+      "connections": [
+         { "name": "LKASKL", "distance": 84 }
+      ]
+   },
+   {
+      "name": "AVAIIS",
+      "connections": [
+         { "name": "Honkajoki", "distance": 407 }
+      ]
+   },
+   {
+      "name": "Outokumpu",
+      "connections": [
+         { "name": "Honkajoki", "distance": 448 },
+         { "name": "AVAIIS", "distance": 158 }
+      ]
+   },
+   {
+      "name": "ATRJKL",
+      "connections": [
+         { "name": "Honkajoki", "distance": 211 }
+      ]
+   }
+]
