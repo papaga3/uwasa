@@ -74,8 +74,8 @@ export const StationBox: FC<Props> = ({ station }) => {
     };
 
    return (
-      <Draggable>
-         <StyledDiv className={classes.root} onClick={handleOnClick}>
+      <Draggable onDrag={customOnDrag} onStop={customOnStop}>
+         <StyledDiv className={classes.root}>
             <Typography> {station.name} </Typography>
             <PointDialog 
                open={openDialog} 
