@@ -1,9 +1,9 @@
-import { FC } from "react";
-import Draggable from "react-draggable";
+import { FC, useState } from "react";
+import Draggable, { DraggableData, DraggableEvent, DraggableEventHandler } from "react-draggable";
 
-import { NavBar } from "components/NavBar";
 import { Station } from "types";
 import { Typography, styled } from "@mui/material";
+import { PointDialog } from "./PointDialog";
 
 interface Props {
    station: Station;
@@ -32,10 +32,56 @@ const StyledDiv = styled("div")(() => ({
 
 
 export const StationBox: FC<Props> = ({ station }) => {
+   const [isDragging, setIsDragging] = useState<boolean>(false);
+   const [openDialog, setOpenDialog] = useState<boolean>(false);
+
+   const handleCloseDialog = () => {
+      setOpenDialog(false);
+   }
+
+   const handleOnClick = () => {
+      if(!openDialog) {
+         setOpenDialog(true);
+      }
+   }
+
+   // Custom onDrag and onDrop functions.
+   // These are used to differentiate between click and drag
+   const customOnDrag: DraggableEventHandler = (
+      e: DraggableEvent,
+      d: DraggableData
+   ) => {
+      setIsDragging(true);
+   }
+
+   const customOnDrop: DraggableEventHandler = (
+      e: DraggableEvent,
+      d: DraggableData
+   ) => {
+
+   }
+
+   const customOnStop: DraggableEventHandler = (
+      e: DraggableEvent,
+      d: DraggableData
+    ) => {
+      if (isDragging) {
+        customOnDrop(e, d);
+      } else {
+        handleOnClick();
+      }
+      setIsDragging(false);
+    };
+
    return (
       <Draggable>
-         <StyledDiv className={classes.root}>
+         <StyledDiv className={classes.root} onClick={handleOnClick}>
             <Typography> {station.name} </Typography>
+            <PointDialog 
+               open={openDialog} 
+               points={station.points}
+               handleClose={handleCloseDialog}
+            />
          </StyledDiv>
       </Draggable>
    );
