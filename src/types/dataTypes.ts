@@ -6,3 +6,7 @@ export interface DataRow {
    Ulostuloaika: string;
    tunti: string; 
 }
+
+export interface Station {
+   
+}
