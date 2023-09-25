@@ -8,5 +8,6 @@ export interface DataRow {
 }
 
 export interface Station {
-   
+   name: string;
+   points: string[];
 }

@@ -2,7 +2,7 @@ import { createHashRouter } from "react-router-dom";
 
 import { DisplayTable, NavBar } from "components";
 import { RouteEnum } from "./routeConstant";
-import { StationMap } from "components/MapComponents/StationMap";
+import { StationMap } from "components/MapComponents";
 
 const router = createHashRouter([
    {

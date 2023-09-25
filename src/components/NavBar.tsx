@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { AppBar, Box, CssBaseline, Toolbar, Typography, styled } from "@mui/material";
-import { RouteEnum, RouteEnumValues } from "routes";
-import { Link, NavLink } from "react-router-dom";
+import { RouteEnum } from "routes";
+import {  NavLink } from "react-router-dom";
 
 interface Props {};
 
