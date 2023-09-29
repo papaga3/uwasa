@@ -10,4 +10,5 @@ export interface DataRow {
 export interface Station {
    name: string;
    points: string[];
+   position?: { x: number; y: number; }
 }
