@@ -1,10 +1,25 @@
 import { FC } from "react";
+import Xarrow, { labelsType } from "react-xarrows";
+import { ConnectionType } from "types";
 
-import _data from "../../data/mapData.json";
-
-interface Props {};
+interface Props {
+   start: string;
+   end: string;
+   distance: number;
+};
 
 // Used to render connection between class
-export const Connection: FC<Props> = () => {
-   return (<div></div>);
+export const Connection: FC<Props> = ({ 
+   start, end, distance
+}) => {
+   const labels: labelsType = {
+      middle: <div> {distance}km </div>
+    };
+   return (
+      <Xarrow
+         start={start}
+         end={end}
+         labels={labels}
+      />
+   );
 }

@@ -1,7 +1,8 @@
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 import Draggable, { DraggableData, DraggableEvent, DraggableEventHandler } from "react-draggable";
+import { useXarrow } from "react-xarrows";
 
-import { Station } from "types";
+import { PositionType, Station } from "types";
 import { Typography, styled } from "@mui/material";
 import { PointDialog } from "./PointDialog";
 
@@ -32,8 +33,16 @@ const StyledDiv = styled("div")(() => ({
 
 
 export const StationBox: FC<Props> = ({ station }) => {
+   const updateArrows = useXarrow();
+
+   const nodeRef = useRef(null);
+
    const [isDragging, setIsDragging] = useState<boolean>(false);
    const [openDialog, setOpenDialog] = useState<boolean>(false);
+
+   const initPosition: PositionType = station.position === undefined ? {x: 0, y: 0} : station.position;
+
+   const [position, setPosition] = useState<PositionType>(initPosition);
 
    const handleCloseDialog = () => {
       setOpenDialog(false);
@@ -51,6 +60,7 @@ export const StationBox: FC<Props> = ({ station }) => {
       e: DraggableEvent,
       d: DraggableData
    ) => {
+      updateArrows();
       setIsDragging(true);
    }
 
@@ -58,7 +68,7 @@ export const StationBox: FC<Props> = ({ station }) => {
       e: DraggableEvent,
       d: DraggableData
    ) => {
-
+      setPosition({x: d.x, y: d.y});
    }
 
    const customOnStop: DraggableEventHandler = (
@@ -69,13 +79,19 @@ export const StationBox: FC<Props> = ({ station }) => {
         customOnDrop(e, d);
       } else {
         handleOnClick();
+        updateArrows();
       }
       setIsDragging(false);
     };
 
    return (
-      <Draggable onDrag={customOnDrag} onStop={customOnStop}>
-         <StyledDiv className={classes.root}>
+      <Draggable 
+         onDrag={customOnDrag}
+         onStop={customOnStop}
+         position={ position }
+         nodeRef={nodeRef}
+      >
+         <StyledDiv className={classes.root} id={station.name} ref={nodeRef}>
             <Typography> {station.name} </Typography>
             <PointDialog 
                open={openDialog} 
