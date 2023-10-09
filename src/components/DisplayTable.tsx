@@ -1,9 +1,10 @@
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
-import { FC } from "react";
+import { FC, ReactEventHandler, useState } from "react";
 
 import _data from "../data/data.json";
 import { DataRow } from "../types";
 import { NavBar } from "./NavBar";
+import { TextField } from "@mui/material";
 
 interface Props {};
 
@@ -16,19 +17,32 @@ const columns: GridColDef[] = [
 ];
 
 export const DisplayTable: FC<Props> = () => {
+   const [filterText, setFilterText] = useState("");
+
    const data: DataRow[] = _data as DataRow[];
    data.forEach((item, index) => {
       if(item.index === undefined) {
          item.index = index;
       }
    });
-   console.log(data);
+
+   const [rows, setRows] = useState(data);
+
+   const onFilterTextChange = (event: React.ChangeEvent<{ value: string }>) => {
+      setFilterText(event.target.value);
+      const newRow = data.filter(
+         (item, index) => (item.Täytttöpiste.includes(event.target.value))
+      );
+      setRows(newRow);
+   }
+
    return (
       <div>
          <NavBar />
          <h1> Demo table </h1>
+         <TextField id="filterTextField" variant="outlined" value={filterText} onChange={onFilterTextChange}/>
          <DataGrid 
-            rows={data} 
+            rows={rows} 
             columns={columns}  
             initialState={{
                pagination: {
