@@ -39,7 +39,6 @@ export const DisplayTable: FC<Props> = () => {
    return (
       <div>
          <NavBar />
-         <h1> Demo table </h1>
          <TextField id="filterTextField" variant="outlined" value={filterText} onChange={onFilterTextChange}/>
          <DataGrid 
             rows={rows} 

@@ -44,7 +44,7 @@ export const NavBar: FC<Props> = () => {
             <CssBaseline />
             <StyledToolbar className={classes.root}>
                <Typography variant="h4" className={classes.logo}>
-                  NavBar
+                  Transportation Planning
                </Typography>
                <div>
                   <NavLink to={RouteEnum.mainPage} end className={classes.link}> Home </NavLink>
