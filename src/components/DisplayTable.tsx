@@ -1,10 +1,20 @@
-import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import { 
+   DataGrid,
+   GridColDef, 
+   GridToolbar 
+} from "@mui/x-data-grid";
 import { FC, ReactEventHandler, useState } from "react";
 
 import _data from "../data/data.json";
-import { DataRow } from "../types";
+import _stationData from "../data/station.json";
+import { DataRow, Station } from "../types";
 import { NavBar } from "./NavBar";
-import { TextField } from "@mui/material";
+import { 
+   InputLabel, 
+   MenuItem, 
+   Select,
+   SelectChangeEvent 
+} from "@mui/material";
 
 interface Props {};
 
@@ -17,8 +27,6 @@ const columns: GridColDef[] = [
 ];
 
 export const DisplayTable: FC<Props> = () => {
-   const [filterText, setFilterText] = useState("");
-
    const data: DataRow[] = _data as DataRow[];
    data.forEach((item, index) => {
       if(item.index === undefined) {
@@ -26,9 +34,12 @@ export const DisplayTable: FC<Props> = () => {
       }
    });
 
+   const stationData: Station[] = _stationData as Station[];
+
+   const [filterText, setFilterText] = useState("");
    const [rows, setRows] = useState(data);
 
-   const onFilterTextChange = (event: React.ChangeEvent<{ value: string }>) => {
+   const onFilterTextChange = (event: SelectChangeEvent) => {
       setFilterText(event.target.value);
       const newRow = data.filter(
          (item, index) => (item.Täytttöpiste.includes(event.target.value))
@@ -39,7 +50,27 @@ export const DisplayTable: FC<Props> = () => {
    return (
       <div>
          <NavBar />
-         <TextField id="filterTextField" variant="outlined" value={filterText} onChange={onFilterTextChange}/>
+         <div>
+            <InputLabel id="filter-text-select-label">Täyttöpiste</InputLabel>
+            <Select 
+               labelId="filter-text-select-label"
+               id="filter-text-select"
+               value={filterText}
+               label="Täyttöpiste"
+               onChange={onFilterTextChange}
+               sx={{ width: 500 }}
+            >
+               {
+                  stationData.map((item, index) => (
+                     <MenuItem 
+                        key={`filter-text-select-menu-item${index}`}
+                        value={item.name} >
+                           {item.name}
+                     </MenuItem>
+                  ))
+               }
+            </Select>
+         </div>
          <DataGrid 
             rows={rows} 
             columns={columns}  
