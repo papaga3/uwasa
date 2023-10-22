@@ -7,6 +7,7 @@ import { ConnectionType, Station } from "types";
 import { StationBox } from "./StationBox";
 import { Xwrapper } from "react-xarrows";
 import { Connection } from "./Connection";
+import { PisteBox } from "./PisteBox";
 
 interface Props {};
 
@@ -19,25 +20,28 @@ export const StationMap: FC<Props> = () => {
          <div>
             <NavBar />
             <h1> Station map </h1>
-            { 
-               stationData.map((item, index) => {
-                  return <StationBox key={index} station={item} />
-               })
-            }
+            <div style={ { width: "100%", height: "1000px" } } id="mapZone">
+               { 
+                  stationData.map((item, index) => {
+                     return <StationBox key={index} station={item} />
+                  })
+               }
 
-            {
-               mapData.map((startPoint, startIndex) => {
-                  const conn = startPoint.connections.map((endPoint, endIndex) => {
-                     return <Connection 
-                              key={`${startIndex}-${endIndex}`}
-                              start={startPoint.name}
-                              end={endPoint.name}
-                              distance={endPoint.distance}
-                           />
-                  });
-                  return conn;
-               })
-            }
+               {
+                  mapData.map((startPoint, startIndex) => {
+                     const conn = startPoint.connections.map((endPoint, endIndex) => {
+                        return <Connection 
+                                 key={`${startIndex}-${endIndex}`}
+                                 start={startPoint.name}
+                                 end={endPoint.name}
+                                 distance={endPoint.distance}
+                              />
+                     });
+                     return conn;
+                  })
+               }
+               <PisteBox />
+            </div>
          </div>
       </Xwrapper>
    )

@@ -90,10 +90,12 @@ export const StationBox: FC<Props> = ({ station }) => {
          onStop={customOnStop}
          position={ position }
          nodeRef={nodeRef}
+         bounds="#mapZone"
       >
          <StyledDiv className={classes.root} id={station.name} ref={nodeRef}>
             <Typography> {station.name} </Typography>
             <PointDialog 
+               parentPoint={station.name}
                open={openDialog} 
                points={station.points}
                handleClose={handleCloseDialog}
