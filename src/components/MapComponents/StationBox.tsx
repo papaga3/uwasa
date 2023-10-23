@@ -5,6 +5,9 @@ import { useXarrow } from "react-xarrows";
 import { PositionType, Station } from "types";
 import { Typography, styled } from "@mui/material";
 import { PointDialog } from "./PointDialog";
+import { useRecoilValue } from "recoil";
+import { truckPositionAtom } from "atom";
+import { Truck } from "components/TruckComponents";
 
 interface Props {
    station: Station;
@@ -33,6 +36,9 @@ const StyledDiv = styled("div")(() => ({
 
 
 export const StationBox: FC<Props> = ({ station }) => {
+
+   const truckPosition = useRecoilValue(truckPositionAtom);
+
    const updateArrows = useXarrow();
 
    const nodeRef = useRef(null);
@@ -100,6 +106,7 @@ export const StationBox: FC<Props> = ({ station }) => {
                points={station.points}
                handleClose={handleCloseDialog}
             />
+            { (truckPosition === station.name) && <Truck /> }
          </StyledDiv>
       </Draggable>
    );

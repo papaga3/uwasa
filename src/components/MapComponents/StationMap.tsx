@@ -1,19 +1,52 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { Xwrapper } from "react-xarrows";
+
 
 import { NavBar } from "components/NavBar";
-import _stationData from "../../data/station.json";
-import _mapData from "../../data/mapData.json";
 import { ConnectionType, Station } from "types";
+import { truckPositionAtom } from "atom";
+
 import { StationBox } from "./StationBox";
-import { Xwrapper } from "react-xarrows";
 import { Connection } from "./Connection";
 import { PisteBox } from "./PisteBox";
+
+import _stationData from "../../data/station.json";
+import _mapData from "../../data/mapData.json";
+import { returnRandomPosition } from "components/TruckComponents/TruckLocation";
 
 interface Props {};
 
 export const StationMap: FC<Props> = () => {
    const stationData: Station[] = _stationData as Station[];
    const mapData: ConnectionType[] = _mapData as ConnectionType[];
+
+   const [truckPosition, setTruckPosition] = useRecoilState(truckPositionAtom);
+
+   const curConnection = mapData.find((item) => item.name === truckPosition);
+   console.log("curConnection: ", curConnection?.name);
+
+   useEffect(() => {
+      const travelInterval: NodeJS.Timeout = setInterval(
+         () => {
+            if(curConnection !== undefined) {
+               const nextDestination = returnRandomPosition(curConnection);
+               if(nextDestination === "") {
+                  return;
+               }
+               console.log("nextDestion:", nextDestination);
+               setTruckPosition(nextDestination);
+            }
+         },
+         5000
+      );
+
+      if(curConnection === undefined) {
+         clearInterval(travelInterval);
+      }
+
+      return () => clearInterval(travelInterval);
+   }, [truckPosition]);
 
    return ( 
       <Xwrapper>
