@@ -27,3 +27,18 @@ export interface ConnectionType {
    name: string;
    connections: DestinationType[];
 }
+
+export interface Truck {
+   ID: string;
+}
+
+export interface Package {
+   ID: string;
+}
+
+export interface TruckSchedule {
+   truck: Truck;
+   startPoint: string;
+   startTime: string;
+   package: Package;
+}

@@ -14,6 +14,7 @@ import { PisteBox } from "./PisteBox";
 import _stationData from "../../data/station.json";
 import _mapData from "../../data/mapData.json";
 import { returnRandomPosition } from "components/TruckComponents/TruckLocation";
+import { TruckTable } from "components/TruckComponents/TruckTable";
 
 interface Props {};
 
@@ -74,6 +75,7 @@ export const StationMap: FC<Props> = () => {
                   })
                }
                <PisteBox />
+               <TruckTable />
             </div>
          </div>
       </Xwrapper>
