@@ -1,0 +1,19 @@
+[
+   {
+      "ID": "ABC-123",
+      "schedule": [
+         {
+            "stopID": "RONKMI001",
+            "packageID": "401",
+            "ArriveTime": "4:14",
+            "DepartureTime": "4:17"
+         },
+         {
+            "stopID": "ATRKJ02",
+            "packageID": "411",
+            "ArriveTime": "6:10",
+            "DepartureTime": "6:17"
+         }
+      ]
+   }
+]

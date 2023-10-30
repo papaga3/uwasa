@@ -53,7 +53,7 @@ export const StationMap: FC<Props> = () => {
       <Xwrapper>
          <div>
             <NavBar />
-            <h1> Station map </h1>
+            <h1> Station Map </h1>
             <div style={ { width: "100%", height: "1000px" } } id="mapZone">
                { 
                   stationData.map((item, index) => {

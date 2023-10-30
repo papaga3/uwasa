@@ -28,17 +28,18 @@ export interface ConnectionType {
    connections: DestinationType[];
 }
 
-export interface Truck {
-   ID: string;
-}
-
 export interface Package {
    ID: string;
 }
 
 export interface TruckSchedule {
-   truck: Truck;
-   startPoint: string;
-   startTime: string;
-   package: Package;
+   stopID: string;
+   packageID: string;
+   ArriveTime: string;
+   DepartureTime: string;
+}
+
+export interface Truck {
+   ID: string;
+   schedule: TruckSchedule[];
 }

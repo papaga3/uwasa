@@ -1,7 +1,11 @@
-import { styled } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Typography, styled } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { FC } from "react";
-import { TruckSchedule } from "types";
+
+import { Truck, TruckSchedule } from "types";
+import  _truckData from "../../data/truckData.json";
+import { ExpandMore } from "@mui/icons-material";
+import { ScheduleTable } from "./ScheduleTable";
 
 interface Props {}
 
@@ -24,33 +28,30 @@ const StyledDiv = styled("div")(() => ({
    },
 }));
 
-const columns: GridColDef[] = [
-   {field: 'Truck ID', headerName: 'Truck ID', width: 100},
-   {field: 'start point', headerName: 'start point', width: 100},
-   {field: 'start time', headerName: 'start time', width: 100},
-   {field: 'package ID', headerName: 'package ID', width: 100},
-];
-
 export const TruckTable: FC<Props> = () => {
 
-   const truckData: TruckSchedule[] = [];
-   let rows: TruckSchedule[] = truckData;
+   const truckData: Truck[] = _truckData as Truck[];
 
    return (
       <StyledDiv className={classes.root}>
          <h3> Truck Schedule </h3>
-         <DataGrid 
-            rows={rows} 
-            columns={columns}  
-            initialState={{
-               pagination: {
-                  paginationModel: { page: 0, pageSize: 5 },
-                },
-            }}
-            pageSizeOptions={[5, 10]} 
-            getRowId={(row: TruckSchedule) => `${row.truck.ID}_${row.startPoint}_${row.startTime}_${row.package.ID}`}
-         />
-
+         {
+            truckData.map((item, index) => {
+               return(
+                  <Accordion key={`truck-${index}-${item.ID}`}>
+                     <AccordionSummary
+                        expandIcon={<ExpandMore />}
+                        id={`truck-${index}`}
+                     >
+                        <Typography>{item.ID}</Typography>
+                     </AccordionSummary>
+                     <AccordionDetails>
+                        <ScheduleTable schedule={item.schedule} />
+                     </AccordionDetails>
+                  </Accordion>
+               );
+            })
+         }
       </StyledDiv>
    );
 }
