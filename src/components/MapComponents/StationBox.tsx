@@ -46,7 +46,7 @@ export const StationBox: FC<Props> = ({ station }) => {
    const [isDragging, setIsDragging] = useState<boolean>(false);
    const [openDialog, setOpenDialog] = useState<boolean>(false);
 
-   const initPosition: PositionType = station.position === undefined ? {x: 0, y: 0} : station.position;
+   const initPosition: PositionType = station.position === undefined ? {x: 0, y: 0} : {x: station.position.x, y: station.position.y + 120};
 
    const [position, setPosition] = useState<PositionType>(initPosition);
 

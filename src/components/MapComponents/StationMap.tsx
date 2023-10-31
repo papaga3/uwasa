@@ -15,6 +15,7 @@ import _stationData from "../../data/station.json";
 import _mapData from "../../data/mapData.json";
 import { returnRandomPosition } from "components/TruckComponents/TruckLocation";
 import { TruckTable } from "components/TruckComponents/TruckTable";
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
 interface Props {};
 
@@ -53,27 +54,37 @@ export const StationMap: FC<Props> = () => {
       <Xwrapper>
          <div>
             <NavBar />
-            <h1> Station Map </h1>
-            <div style={ { width: "100%", height: "1000px" } } id="mapZone">
-               { 
-                  stationData.map((item, index) => {
-                     return <StationBox key={index} station={item} />
-                  })
-               }
+            <div id="mapZone">
+               <TransformWrapper>
+                  <TransformComponent wrapperStyle={{
+                     width: "100%",
+                     height: "1000px",
+                     maxWidth: "100%",
+                     maxHeight: "calc(100vh - 50px)",
+                  }}>
+                     <div style={{ width: "1000px", height: "1000px" }}>
+                     { 
+                        stationData.map((item, index) => {
+                           return <StationBox key={index} station={item} />
+                        })
+                     }
 
-               {
-                  mapData.map((startPoint, startIndex) => {
-                     const conn = startPoint.connections.map((endPoint, endIndex) => {
-                        return <Connection 
-                                 key={`${startIndex}-${endIndex}`}
-                                 start={startPoint.name}
-                                 end={endPoint.name}
-                                 distance={endPoint.distance}
-                              />
-                     });
-                     return conn;
-                  })
-               }
+                     {
+                        mapData.map((startPoint, startIndex) => {
+                           const conn = startPoint.connections.map((endPoint, endIndex) => {
+                              return <Connection 
+                                       key={`${startIndex}-${endIndex}`}
+                                       start={startPoint.name}
+                                       end={endPoint.name}
+                                       distance={endPoint.distance}
+                                    />
+                           });
+                           return conn;
+                        })
+                     }
+                     </div>
+                  </TransformComponent>
+               </TransformWrapper>
                <PisteBox />
                <TruckTable />
             </div>

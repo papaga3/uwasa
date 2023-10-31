@@ -1,8 +1,7 @@
 import { Accordion, AccordionDetails, AccordionSummary, Typography, styled } from "@mui/material";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { FC } from "react";
 
-import { Truck, TruckSchedule } from "types";
+import { Truck } from "types";
 import  _truckData from "../../data/truckData.json";
 import { ExpandMore } from "@mui/icons-material";
 import { ScheduleTable } from "./ScheduleTable";
