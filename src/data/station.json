@@ -27,6 +27,14 @@
       }
    },
    {
+      "name": "ATRNMB_B",
+      "points": [],
+      "position": {
+         "x": 0,
+         "y": 200
+      }
+   },
+   {
       "name": "SNEPIE",
       "points": [
          "001",
