@@ -91,6 +91,8 @@ export const ScheduleTable: FC<Props> = (
          <AddScheduleDialog
             open={openAddScheduleDialog}
             handleClose={handleScheduleDialogClose}
+            rows={rows}
+            setRows={setRows}
          />
       </StyledDiv>
    );
