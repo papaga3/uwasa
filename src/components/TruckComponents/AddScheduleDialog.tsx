@@ -6,24 +6,27 @@ import _data from "../../data/data.json";
 
 interface Props {
    open: boolean;
+   handleClose: () => void;
    rows: TruckSchedule[];
    setRows: React.Dispatch<React.SetStateAction<TruckSchedule[]>>;
-   handleClose: () => void;
 }
 
 export const AddScheduleDialog: FC<Props> = (
-   { open, handleClose }
+   { open, handleClose, rows, setRows }
 ) => {
 
    const data: DataRow[] = _data as DataRow[];
-   const [kontti, setKontti] = useState(data[0].Kontti);
+   const [selectItem, setSelectItem] = useState(data[0]);
    
    const saveButtonOnClick = () => {
-
-   }
-
-   const handleChange = (event: SelectChangeEvent) => {
-      setKontti(parseInt(event.target.value));
+      const newTruckSchedule: TruckSchedule = {
+         stopID: selectItem.Täytttöpiste,
+         packageID: selectItem.Kontti,
+         ArriveTime: "",
+         DepartureTime: "",
+      }
+      setRows([...rows, newTruckSchedule]);
+      handleClose();
    }
 
    return (
@@ -35,14 +38,17 @@ export const AddScheduleDialog: FC<Props> = (
                <Select
                   labelId="input-kontti-number-label"
                   id="kontti-number-input"
-                  value={kontti.toString()}
+                  value={selectItem.Kontti.toString()}
                   label="Kontti"
-                  onChange={handleChange}
                >
                   { 
                      data.map((item, index) => {
                         return (
-                           <MenuItem key={`kontti-${index}`} value={item.Kontti}>
+                           <MenuItem
+                              key={`kontti-${index}`}
+                              value={item.Kontti}
+                              onClick={() => setSelectItem(item)}
+                           >
                               {item.Kontti}
                            </MenuItem>
                         );
