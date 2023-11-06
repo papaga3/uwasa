@@ -34,8 +34,6 @@ export const TruckTable: FC<Props> = () => {
    const rawTruckData: RawTruck[] = _truckData as RawTruck[];
 
    const truckData: Truck[] = rawTruckData.map((item, index) => {
-      console.log("item: " + item.startTime);
-      console.log(dayjs(item.startTime, "DD.MM.YYYY HH:mm:ss").isValid());
       const truck: Truck = {
          ID: item.ID,
          startPostion: item.startPostion,

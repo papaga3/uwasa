@@ -4,7 +4,7 @@ import { Xwrapper } from "react-xarrows";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
 import { NavBar } from "components/NavBar";
-import { ConnectionType, Edge, Station } from "types";
+import { ConnectionType, DestinationType, Edge, Station } from "types";
 import { truckPositionAtom } from "atom";
 import { StationBox } from "./StationBox";
 import { Connection } from "./Connection";
@@ -20,11 +20,11 @@ interface Props {};
 
 export const StationMap: FC<Props> = () => {
    const stationData: Station[] = _stationData as Station[];
-   // const mapData: ConnectionType[] = _mapData as ConnectionType[];
+   const mapData: ConnectionType[] = _mapData as ConnectionType[];
    const edgeList: Edge[] = _edgeList as Edge[];
 
    const [truckPosition, setTruckPosition] = useRecoilState(truckPositionAtom);
-
+   
    // const curConnection = mapData.find((item) => item.name === truckPosition);
    // console.log("curConnection: ", curConnection?.name);
 
