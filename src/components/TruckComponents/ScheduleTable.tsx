@@ -6,6 +6,7 @@ import { Add } from "@mui/icons-material";
 
 import { TruckSchedule } from "types";
 import { AddScheduleDialog } from "./AddScheduleDialog";
+import { truckPositionAtom } from "atom";
 
 const PREFIX = "TruckTable";
 
@@ -34,7 +35,6 @@ function EditToolBar(
    props: EditToolBarProps
 ) {
    const handleClick = () => {
-      console.log(props.openAddScheduleDialog);
       if(!props.openAddScheduleDialog) {
          props.setOpenAddScheduleDialog(true);
       }
@@ -57,11 +57,12 @@ const columns: GridColDef[] = [
 ];
 
 interface Props {
+   truckStartPositon: string;
    schedule: TruckSchedule[];
 }
 
 export const ScheduleTable: FC<Props> = (
-   { schedule  }
+   { schedule, truckStartPositon }
 ) => {
    const [rows, setRows] = useState<TruckSchedule[]>(schedule);
    const [openAddScheduleDialog, setOpenAddScheduleDialog] = useState(false);
@@ -97,6 +98,7 @@ export const ScheduleTable: FC<Props> = (
             handleClose={handleScheduleDialogClose}
             rows={rows}
             setRows={setRows}
+            truckStartPositon={truckStartPositon}
          />
       </div>
    );
