@@ -3,6 +3,7 @@ import { FC, useState } from "react";
 import { DataRow, TruckSchedule } from "types";
 
 import _data from "../../data/data.json";
+import dayjs from "dayjs";
 
 interface Props {
    open: boolean;
@@ -22,8 +23,9 @@ export const AddScheduleDialog: FC<Props> = (
       const newTruckSchedule: TruckSchedule = {
          stopID: selectItem.Täytttöpiste,
          packageID: selectItem.Kontti,
-         ArriveTime: "",
-         DepartureTime: "",
+         arriveTime: dayjs(),
+         distance: 0,
+         numberOfContainer: 0
       }
       setRows([...rows, newTruckSchedule]);
       handleClose();

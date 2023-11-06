@@ -1,3 +1,5 @@
+import dayjs, { Dayjs } from "dayjs";
+
 export interface PositionType {
    x: number;
    y: number;
@@ -35,16 +37,24 @@ export interface Package {
 export interface TruckSchedule {
    stopID: string;
    packageID: number;
-   ArriveTime: string;
-   DepartureTime: string;
-   // numberOfContainer: number;
-   // distance: number;
+   arriveTime: Dayjs;
+   // DepartureTime: string;
+   numberOfContainer: number;
+   distance: number;
 
+}
+
+export interface RawTruck {
+   ID: string;
+   startPostion: string;
+   startTime: string;
+   schedule: TruckSchedule[];
 }
 
 export interface Truck {
    ID: string;
    startPostion: string;
+   startTime: Dayjs;
    schedule: TruckSchedule[];
 }
 

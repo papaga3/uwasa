@@ -2,19 +2,7 @@
    {
       "ID": "ABC-123",
       "startPostion": "RONKMI",
-      "schedule": [
-         {
-            "stopID": "RONKMI001",
-            "packageID": 401,
-            "ArriveTime": "4:14",
-            "DepartureTime": "4:17"
-         },
-         {
-            "stopID": "ATRKJ02",
-            "packageID": 411,
-            "ArriveTime": "6:10",
-            "DepartureTime": "6:17"
-         }
-      ]
+      "startTime": "07.11.2023 05:00:00",
+      "schedule": []
    }
 ]

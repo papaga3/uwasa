@@ -51,10 +51,9 @@ function EditToolBar(
 const columns: GridColDef[] = [
    {field: 'stopID', headerName: 'Stop ID', width: 100},
    {field: 'packageID', headerName: 'Package ID', width: 100},
-   {field: 'ArriveTime', headerName: 'Arrive Time', width: 100},
-   {field: 'DepartureTime', headerName: 'Departure Time', width: 100},
+   {field: 'arriveTime', headerName: 'Arrive Time', width: 100},
    {field: 'distance', headerName: 'distance', width: 120},
-   {field: 'NumberOfContainer', headerName: 'Number of Container', width: 150}
+   {field: 'numberOfContainer', headerName: 'Number of Container', width: 150}
 ];
 
 interface Props {
@@ -84,7 +83,7 @@ export const ScheduleTable: FC<Props> = (
             pageSizeOptions={[5, 10]} 
             getRowId={
                   (row: TruckSchedule) => 
-                     `${row.stopID}_${row.packageID}_${row.ArriveTime}_${row.DepartureTime}`
+                     `${row.stopID}_${row.packageID}_${row.arriveTime}_${row.distance}`
             }
             slots={{
                toolbar: EditToolBar
