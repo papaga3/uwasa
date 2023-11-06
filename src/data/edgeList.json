@@ -1,0 +1,92 @@
+[
+   {
+      "v1": "RONKMI",
+      "v2": "ATRKJI",
+      "distance": 484
+   },
+   {
+      "v1": "ATRNMB",
+      "v2": "ATRKJI",
+      "distance": 84
+   },
+   {
+      "v1": "SNEPIE",
+      "v2": "ATRKJI",
+      "distance": 172
+   },
+   {
+      "v1": "SNEPIE",
+      "v2": "AVAKST",
+      "distance": 58
+   },
+   {
+      "v1": "HKSRAU",
+      "v2": "Honkajoki",
+      "distance": 124
+   },
+   {
+      "v1": "HKSRAU",
+      "v2": "LKASKL",
+      "distance": 36
+   },
+   {
+      "v1": "ATRKJI",
+      "v2": "Honkajoki",
+      "distance": 56
+   },
+   {
+      "v1": "AVAKST",
+      "v2": "ATRKJI",
+      "distance": 166
+   },
+   {
+      "v1": "LKASKL",
+      "v2": "Honkajoki",
+      "distance": 141
+   },
+   {
+      "v1": "TAPTAM",
+      "v2": "Honkajoki",
+      "distance": 116
+   },
+   {
+      "v1": "ATRSHL",
+      "v2": "TAPTAM",
+      "distance": 35
+   },
+   {
+      "v1": "HKSFRS",
+      "v2": "TAPTAM",
+      "distance": 94
+   },
+   {
+      "v1": "HKSFRS",
+      "v2": "Honkajoki",
+      "distance": 176
+   },
+   {
+      "v1": "AVAFRS",
+      "v2": "LKASKL",
+      "distance": 84
+   },
+   {
+      "v1": "AVAIIS",
+      "v2": "Honkajoki",
+      "distance": 407
+   },
+   {
+      "v1": "Outokumpu",
+      "v2": "Honkajoki",
+      "distance": 448
+   },
+   {
+      "v1": "Outokumpu",
+      "v2": "AVAIIS",
+      "distance": 158
+   },
+   {
+      "v1": "ATRJKL",
+      "v2": "Honkajoki",
+      "distance": 211
+   }
+]

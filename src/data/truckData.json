@@ -1,6 +1,7 @@
 [
    {
       "ID": "ABC-123",
+      "startPostion": "RONKMI",
       "schedule": [
          {
             "stopID": "RONKMI001",

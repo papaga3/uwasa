@@ -37,9 +37,19 @@ export interface TruckSchedule {
    packageID: number;
    ArriveTime: string;
    DepartureTime: string;
+   // numberOfContainer: number;
+   // distance: number;
+
 }
 
 export interface Truck {
    ID: string;
+   startPostion: string;
    schedule: TruckSchedule[];
+}
+
+export interface Edge {
+   v1: string;
+   v2: string;
+   distance: number;
 }

@@ -18,11 +18,11 @@ const classes = {
 const StyledDiv = styled("div")(() => ({
    [`&.${classes.root}`]: {
       position: "absolute",
-      left: "1000px",
+      left: "700px",
       top: "1000px",
-      border: "2px dotted black",
+      border: "2px dotted blue",
       display: "block",
-      width: "500px",
+      width: "700px",
       height: "400px"
    },
 }));

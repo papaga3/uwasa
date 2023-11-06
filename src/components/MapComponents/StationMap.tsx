@@ -1,34 +1,34 @@
 import { FC, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { Xwrapper } from "react-xarrows";
-
+import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 
 import { NavBar } from "components/NavBar";
-import { ConnectionType, Station } from "types";
+import { ConnectionType, Edge, Station } from "types";
 import { truckPositionAtom } from "atom";
-
 import { StationBox } from "./StationBox";
 import { Connection } from "./Connection";
 import { PisteBox } from "./PisteBox";
+import { returnRandomPosition } from "components/TruckComponents/TruckLocation";
+import { TruckTable } from "components/TruckComponents/TruckTable";
 
 import _stationData from "../../data/station.json";
 import _mapData from "../../data/mapData.json";
-import { returnRandomPosition } from "components/TruckComponents/TruckLocation";
-import { TruckTable } from "components/TruckComponents/TruckTable";
-import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import _edgeList from "../../data/edgeList.json";
 
 interface Props {};
 
 export const StationMap: FC<Props> = () => {
    const stationData: Station[] = _stationData as Station[];
-   const mapData: ConnectionType[] = _mapData as ConnectionType[];
+   // const mapData: ConnectionType[] = _mapData as ConnectionType[];
+   const edgeList: Edge[] = _edgeList as Edge[];
 
    const [truckPosition, setTruckPosition] = useRecoilState(truckPositionAtom);
 
-   const curConnection = mapData.find((item) => item.name === truckPosition);
-   console.log("curConnection: ", curConnection?.name);
+   // const curConnection = mapData.find((item) => item.name === truckPosition);
+   // console.log("curConnection: ", curConnection?.name);
 
-   useEffect(() => {
+   /*useEffect(() => {
       const travelInterval: NodeJS.Timeout = setInterval(
          () => {
             if(curConnection !== undefined) {
@@ -48,7 +48,7 @@ export const StationMap: FC<Props> = () => {
       }
 
       return () => clearInterval(travelInterval);
-   }, [truckPosition]);
+   }, [truckPosition]);*/ 
 
    return ( 
       <Xwrapper>
@@ -70,16 +70,13 @@ export const StationMap: FC<Props> = () => {
                      }
 
                      {
-                        mapData.map((startPoint, startIndex) => {
-                           const conn = startPoint.connections.map((endPoint, endIndex) => {
-                              return <Connection 
-                                       key={`${startIndex}-${endIndex}`}
-                                       start={startPoint.name}
-                                       end={endPoint.name}
-                                       distance={endPoint.distance}
-                                    />
-                           });
-                           return conn;
+                        edgeList.map((curEdge, index) => {
+                           return (<Connection
+                                 key={`${curEdge.v1}-${curEdge.v2}-${index}`}
+                                 start={curEdge.v1}
+                                 end={curEdge.v2}
+                                 distance={curEdge.distance}
+                              />);
                         })
                      }
                      </div>

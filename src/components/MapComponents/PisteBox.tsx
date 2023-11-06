@@ -16,9 +16,9 @@ const classes = {
 const StyledDiv = styled("div")(() => ({
    [`&.${classes.root}`]: {
       position: "absolute",
-      left: "870px",
-      top: "400px",
-      border: "2px dotted black",
+      left: "0px",
+      top: "1000px",
+      border: "2px dotted blue",
       display: "block",
       width: "500px",
       height: "400px"
@@ -51,8 +51,6 @@ export const PisteBox: FC<Props> = (
          (item, index) => (item.Täytttöpiste.includes(pisteID))
       );
    }
-
-
 
    return (
       <StyledDiv className={classes.root}>

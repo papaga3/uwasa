@@ -13,14 +13,17 @@ const classes = {
    root: `${PREFIX}-root`
 }
 
-const StyledDiv = styled("div")(() => ({
+/*const StyledDiv = styled("div")(() => ({
    [`&.${classes.root}`]: {
-      border: "2px dotted black",
+      position: "absolute",
+      border: "2px dotted blue",
       display: "block",
-      width: "500px",
-      height: "400px"
+      width: "1000px",
+      height: "500px",
+      left: "700px",
+      top: "1000px",
    },
-}));
+}));*/
 
 interface EditToolBarProps {
    openAddScheduleDialog: boolean,
@@ -50,6 +53,8 @@ const columns: GridColDef[] = [
    {field: 'packageID', headerName: 'Package ID', width: 100},
    {field: 'ArriveTime', headerName: 'Arrive Time', width: 100},
    {field: 'DepartureTime', headerName: 'Departure Time', width: 100},
+   {field: 'distance', headerName: 'distance', width: 120},
+   {field: 'NumberOfContainer', headerName: 'Number of Container', width: 150}
 ];
 
 interface Props {
@@ -67,7 +72,7 @@ export const ScheduleTable: FC<Props> = (
    }
 
    return (
-      <StyledDiv>
+      <div className={classes.root}>
             <DataGrid 
             rows={rows} 
             columns={columns}  
@@ -94,6 +99,6 @@ export const ScheduleTable: FC<Props> = (
             rows={rows}
             setRows={setRows}
          />
-      </StyledDiv>
+      </div>
    );
 }

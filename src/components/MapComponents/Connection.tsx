@@ -20,6 +20,7 @@ export const Connection: FC<Props> = ({
          start={start}
          end={end}
          labels={labels}
+         showHead={false}
       />
    );
 }
