@@ -35,7 +35,7 @@ function calculateDistance(
    mapData.forEach((item, index) => {
       distanceMap.set(item.name, Infinity);
    });
-   distanceMap.set(mapData[0].name, 0);
+   distanceMap.set(startPosition, 0);
 
    // Create previous map
    const prev: Map<string, string | undefined> = new Map();
