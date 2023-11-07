@@ -7,6 +7,7 @@ import { Add } from "@mui/icons-material";
 import { TruckSchedule } from "types";
 import { AddScheduleDialog } from "./AddScheduleDialog";
 import { truckPositionAtom } from "atom";
+import { Dayjs } from "dayjs";
 
 const PREFIX = "TruckTable";
 
@@ -51,18 +52,19 @@ function EditToolBar(
 const columns: GridColDef[] = [
    {field: 'stopID', headerName: 'Stop ID', width: 100},
    {field: 'packageID', headerName: 'Package ID', width: 100},
-   {field: 'arriveTime', headerName: 'Arrive Time', width: 100},
+   {field: 'arriveTime', headerName: 'Arrive Time', width: 350},
    {field: 'distance', headerName: 'distance', width: 120},
    {field: 'numberOfContainer', headerName: 'Number of Container', width: 150}
 ];
 
 interface Props {
+   truckStartTime: Dayjs;
    truckStartPositon: string;
    schedule: TruckSchedule[];
 }
 
 export const ScheduleTable: FC<Props> = (
-   { schedule, truckStartPositon }
+   { schedule, truckStartPositon, truckStartTime }
 ) => {
    const [rows, setRows] = useState<TruckSchedule[]>(schedule);
    const [openAddScheduleDialog, setOpenAddScheduleDialog] = useState(false);
@@ -99,6 +101,7 @@ export const ScheduleTable: FC<Props> = (
             rows={rows}
             setRows={setRows}
             truckStartPositon={truckStartPositon}
+            truckStartTime={truckStartTime}
          />
       </div>
    );

@@ -59,7 +59,11 @@ export const TruckTable: FC<Props> = () => {
                         <p><b>start time:</b> {item.startTime.toString()}</p>
                      </AccordionSummary>
                      <AccordionDetails>
-                        <ScheduleTable  truckStartPositon={item.startPostion} schedule={item.schedule} />
+                        <ScheduleTable  
+                           truckStartPositon={item.startPostion} 
+                           schedule={item.schedule} 
+                           truckStartTime={item.startTime}
+                        />
                      </AccordionDetails>
                   </Accordion>
                );

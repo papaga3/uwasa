@@ -10,7 +10,7 @@ import {
    Select 
 } from "@mui/material";
 import { FC, useState } from "react";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import { SnackbarProvider, useSnackbar } from "notistack";
 
 import { ConnectionType, DataRow, TruckSchedule } from "types";
@@ -49,7 +49,8 @@ function calculateDistance(
   
    queue.push({name: startPosition, distance: 0});
 
-   const path: string[] = []; 
+   const path: string[] = [];
+   let returnDistance = 0;
 
    while(queue.length > 0) {
       // Find the smallest in queue
@@ -69,6 +70,7 @@ function calculateDistance(
       if(minKey === endPosition) {
          // WE ARE DONE
          let curKey = minKey;
+         returnDistance = minDis;
          while(prev.get(curKey) !== undefined) {
             const temp = prev.get(curKey);
             if(temp === undefined) {
@@ -102,7 +104,7 @@ function calculateDistance(
    return( 
       { 
          path: path.concat(startPosition).reverse(),
-         distance: distanceMap.get(endPosition) as number 
+         distance: returnDistance 
       } 
    );
 }
@@ -113,16 +115,24 @@ interface Props {
    rows: TruckSchedule[];
    setRows: React.Dispatch<React.SetStateAction<TruckSchedule[]>>;
    truckStartPositon: string;
+   truckStartTime: Dayjs;
 }
 
 export const AddScheduleDialog: FC<Props> = (
-   { open, handleClose, rows, setRows, truckStartPositon }
+   { 
+      open, 
+      handleClose, 
+      rows, 
+      setRows, 
+      truckStartPositon,
+      truckStartTime
+   }
 ) => {
 
    const data: DataRow[] = _data as DataRow[];
    const mapData: ConnectionType[] = _mapData as ConnectionType[];
    const [curStartPosition, setCurStartPositon] = useState(truckStartPositon);
-
+   const [curTruckStartTime, setCurTruckStartTime] = useState(truckStartTime);
 
    const { enqueueSnackbar } = useSnackbar();
    const [selectItem, setSelectItem] = useState(data[0]);
@@ -135,18 +145,28 @@ export const AddScheduleDialog: FC<Props> = (
       } else {
          const endPosition = selectItem.Täytttöpiste.substring(0, 6);
          const result = calculateDistance(curStartPosition, mapData, endPosition);
-         console.log(result.distance);
+
+         // Calculating driving time
+         const drivingTime = result.distance / 60;
+         const drivingTimeString = drivingTime.toString();
+         const numArray = drivingTimeString.split('.');
+         const hour = parseInt(numArray[0]);
+         const minute = Math.round(parseFloat(`0.${numArray[1]}`) * 60);
+         
+         const newArriveTime = curTruckStartTime.add(hour, "hour").add(minute, "minute");
+
          console.log(result.path);
          const newTruckSchedule: TruckSchedule = {
             stopID: selectItem.Täytttöpiste,
             packageID: selectItem.Kontti,
-            arriveTime: dayjs(),
+            arriveTime: newArriveTime,
             distance: result.distance,
             numberOfContainer: numberOfContainer + 1
          }
          console.log(result.path);
          setCurStartPositon(endPosition);
          setNumberOfContainer(numberOfContainer + 1);
+         setCurTruckStartTime(newArriveTime);
          setRows([...rows, newTruckSchedule]);
          handleClose();
       }
