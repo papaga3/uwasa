@@ -52,7 +52,7 @@ function EditToolBar(
 const columns: GridColDef[] = [
    {field: 'stopID', headerName: 'Stop ID', width: 100},
    {field: 'packageID', headerName: 'Package ID', width: 100},
-   {field: 'arriveTime', headerName: 'Arrive Time', width: 350},
+   {field: 'arriveTime', headerName: 'Arrive Time', width: 120},
    {field: 'distance', headerName: 'distance', width: 120},
    {field: 'numberOfContainer', headerName: 'Number of Container', width: 150}
 ];
