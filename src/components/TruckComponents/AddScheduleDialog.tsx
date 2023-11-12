@@ -159,7 +159,7 @@ export const AddScheduleDialog: FC<Props> = (
          const newTruckSchedule: TruckSchedule = {
             stopID: selectItem.Täytttöpiste,
             packageID: selectItem.Kontti,
-            arriveTime: newArriveTime,
+            arriveTime: newArriveTime.format("DD.MM.YYYY HH:mm"),
             distance: result.distance,
             numberOfContainer: numberOfContainer + 1
          }
