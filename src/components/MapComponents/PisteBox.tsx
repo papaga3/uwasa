@@ -16,12 +16,12 @@ const classes = {
 const StyledDiv = styled("div")(() => ({
    [`&.${classes.root}`]: {
       position: "absolute",
-      left: "0px",
-      top: "1000px",
+      left: "100px",
+      top: "800px",
       border: "2px dotted blue",
       display: "block",
       width: "500px",
-      height: "400px"
+      height: "1500px"
    },
 }));
 
@@ -60,10 +60,10 @@ export const PisteBox: FC<Props> = (
             columns={columns}  
             initialState={{
                pagination: {
-                  paginationModel: { page: 0, pageSize: 5 },
+                  paginationModel: { page: 0, pageSize: 20 },
                 },
             }}
-            pageSizeOptions={[5, 10]} 
+            pageSizeOptions={[20, 25]} 
             getRowId={(row: DataRow) => `${row["Täytttöpiste"]}_${row.Ulostuloaika}_${row.tunti}_${row.index}`}
          />
 

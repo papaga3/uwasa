@@ -28,6 +28,10 @@ function calculateDistance(
    mapData: ConnectionType[],
    endPosition: string): CalDistance {
    
+   // Patch 
+   if(endPosition === "ATRNMS") {
+      endPosition = "ATRNMB";
+   }   
    // console.log("end: ", endPosition);
    
    // Create distance map
