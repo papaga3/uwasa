@@ -15,18 +15,6 @@ const classes = {
    root: `${PREFIX}-root`
 }
 
-/*const StyledDiv = styled("div")(() => ({
-   [`&.${classes.root}`]: {
-      position: "absolute",
-      border: "2px dotted blue",
-      display: "block",
-      width: "1000px",
-      height: "500px",
-      left: "700px",
-      top: "1000px",
-   },
-}));*/
-
 interface EditToolBarProps {
    openAddScheduleDialog: boolean,
    setOpenAddScheduleDialog: React.Dispatch<React.SetStateAction<boolean>>
@@ -54,7 +42,8 @@ const columns: GridColDef[] = [
    {field: 'packageID', headerName: 'Package ID', width: 100},
    {field: 'arriveTime', headerName: 'Arrive Time', width: 150},
    {field: 'distance', headerName: 'distance', width: 120},
-   {field: 'numberOfContainer', headerName: 'Number of Container', width: 150}
+   {field: 'numberOfContainer', headerName: 'Number of Container', width: 150},
+   {field: '', headerName: 'cost', width: 150}
 ];
 
 interface Props {

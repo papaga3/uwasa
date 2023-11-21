@@ -21,7 +21,7 @@ const StyledDiv = styled("div")(() => ({
    [`&.${classes.root}`]: {
       position: "absolute",
       left: "700px",
-      top: "1000px",
+      top: "800px",
       border: "2px dotted blue",
       display: "block",
       width: "800px",
@@ -54,11 +54,11 @@ export const TruckTable: FC<Props> = () => {
                         expandIcon={<ExpandMore />}
                         id={`truck-${index}`}
                      >
-                        <p><b>truck ID:</b> {item.ID} / </p>
-                        <p><b>start postion:</b> {item.startPostion} / </p>
-                        <p><b>start time:</b> {item.startTime.toString()}</p>
+                          <p><b>truck ID:</b> {item.ID} </p>
                      </AccordionSummary>
                      <AccordionDetails>
+                        <p><b>start postion:</b> {item.startPostion} </p>
+                        <p><b>start time:</b> {item.startTime.format("DD.MM.YYYY HH:mm:ss")}</p>
                         <ScheduleTable  
                            truckStartPositon={item.startPostion} 
                            schedule={item.schedule} 
