@@ -4,6 +4,8 @@ import reportWebVitals from './reportWebVitals';
 import { RouterProvider } from 'react-router-dom';
 import { RecoilRoot } from "recoil";
 import { SnackBarProvider } from "notistack";
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 import './index.css';
 import router from 'routes/router';
@@ -12,7 +14,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <RecoilRoot>
-      <RouterProvider router={router}/>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <RouterProvider router={router}/> 
+        </LocalizationProvider>
     </RecoilRoot>
   </React.StrictMode>
 );
