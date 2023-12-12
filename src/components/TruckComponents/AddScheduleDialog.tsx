@@ -7,9 +7,10 @@ import {
    FormControl, 
    InputLabel, 
    MenuItem, 
-   Select 
+   Select, 
+   SelectChangeEvent
 } from "@mui/material";
-import { FC, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { SnackbarProvider, useSnackbar } from "notistack";
 
@@ -68,10 +69,6 @@ function calculateDistance(
             minDis = item.distance;
          }
       });
-
-      // console.log(minKey);
-      // console.log(queue.toString());
-      // console.log("endPosition: ", endPosition);
 
       if(minKey === endPosition) {
          // WE ARE DONE
@@ -137,17 +134,20 @@ export const AddScheduleDialog: FC<Props> = (
 
    let [data, setData] = useRecoilState(pisteBoxDataRowsAtom);
 
-   const displayedData = data.filter((item, index) => item.isSelected === false);
-
    const mapData: ConnectionType[] = _mapData as ConnectionType[];
    const [curStartPosition, setCurStartPositon] = useState(truckStartPositon);
    const [curTruckStartTime, setCurTruckStartTime] = useState(truckStartTime);
 
    const { enqueueSnackbar } = useSnackbar();
    const [selectItem, setSelectItem] = useState(data[0]);
-   const [selectIndex, setSelectIndex] = useState(0);
+
+   const [selectDisplayValue, setSelectDisplayValue] = useState("");
 
    const [numberOfContainer, setNumberOfContainer] = useState(0);
+
+   const handleChange = (event: SelectChangeEvent) => {
+      setSelectDisplayValue(event.target.value as string);
+    };
 
    const saveButtonOnClick = () => {
       if(numberOfContainer === 3) {
@@ -179,11 +179,18 @@ export const AddScheduleDialog: FC<Props> = (
          setCurTruckStartTime(newArriveTime);
          setRows([...rows, newTruckSchedule]);
 
-         let newData = [...data];
-         newData[selectIndex].isSelected = true;
+         const newData = data.map((item, index) => {
+            if(item.Kontti === selectItem.Kontti) {
+               return {...item, isSelected: true};
+            } else {
+               return item;
+            }
+         });
 
          setData(newData);
-         
+         setSelectDisplayValue("");
+         console.log(data);
+
          handleClose();
       }
    }
@@ -198,18 +205,22 @@ export const AddScheduleDialog: FC<Props> = (
                <Select
                   labelId="input-kontti-number-label"
                   id="kontti-number-input"
-                  value={selectItem.Kontti.toString()}
+                  value={selectDisplayValue}
                   label="Kontti"
+                  defaultValue=""
+                  onChange={handleChange}
                >
                   { 
-                     displayedData.map((item, index) => {
+                     data.map((item, index) => {
+                        if(item.isSelected === true) {
+                           return;
+                        }
                         return (
                            <MenuItem
                               key={`kontti-${index}`}
-                              value={item.Kontti}
+                              value={`${item.Kontti} - ${item.Täytttöpiste}`}
                               onClick={() => { 
-                                 setSelectItem(item); 
-                                 setSelectIndex(index); 
+                                 setSelectItem(data[index]); 
                               }}
                            >
                               {item.Kontti} - {item.Täytttöpiste}
