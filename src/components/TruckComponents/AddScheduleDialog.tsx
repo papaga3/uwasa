@@ -178,6 +178,12 @@ export const AddScheduleDialog: FC<Props> = (
          setNumberOfContainer(numberOfContainer + 1);
          setCurTruckStartTime(newArriveTime);
          setRows([...rows, newTruckSchedule]);
+
+         let newData = [...data];
+         newData[selectIndex].isSelected = true;
+
+         setData(newData);
+         
          handleClose();
       }
    }
