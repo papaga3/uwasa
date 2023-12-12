@@ -18,7 +18,7 @@ import { FC, useState } from "react";
 import _stationData from "../../data/station.json";
 import { Station, Truck } from "types";
 import dayjs, { Dayjs } from "dayjs";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { truckListAtom } from "atom";
 
 interface Props {
@@ -61,7 +61,7 @@ export const AddNewTruckDialog: FC<Props> = (
             ]
          );
       });
-      
+
       handleClose();
    }
 

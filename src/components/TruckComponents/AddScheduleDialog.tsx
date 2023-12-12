@@ -17,6 +17,8 @@ import { ConnectionType, DataRow, TruckSchedule } from "types";
 
 import _data from "../../data/data.json";
 import _mapData from "../../data/mapData.json";
+import { useRecoilValue } from "recoil";
+import { pisteBoxDataRowsAtom } from "atom";
 
 interface CalDistance {
    path: string[];
@@ -133,7 +135,9 @@ export const AddScheduleDialog: FC<Props> = (
    }
 ) => {
 
-   const data: DataRow[] = _data as DataRow[];
+   let data = useRecoilValue(pisteBoxDataRowsAtom);
+   data = data.filter((item, index) => item.isSelected === false);
+   
    const mapData: ConnectionType[] = _mapData as ConnectionType[];
    const [curStartPosition, setCurStartPositon] = useState(truckStartPositon);
    const [curTruckStartTime, setCurTruckStartTime] = useState(truckStartTime);
@@ -198,7 +202,7 @@ export const AddScheduleDialog: FC<Props> = (
                               value={item.Kontti}
                               onClick={() => setSelectItem(item)}
                            >
-                              {item.Kontti}
+                              {item.Kontti} - {item.Täytttöpiste}
                            </MenuItem>
                         );
                      })
