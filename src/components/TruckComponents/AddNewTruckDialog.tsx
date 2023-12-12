@@ -60,7 +60,9 @@ export const AddNewTruckDialog: FC<Props> = (
                ...oldTruckList, truck
             ]
          );
-      })
+      });
+      
+      handleClose();
    }
 
    return (
