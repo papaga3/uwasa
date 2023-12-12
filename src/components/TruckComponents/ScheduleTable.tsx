@@ -43,7 +43,8 @@ const columns: GridColDef[] = [
    {field: 'arriveTime', headerName: 'Arrive Time', width: 150},
    {field: 'distance', headerName: 'distance', width: 120},
    {field: 'numberOfContainer', headerName: 'Number of Container', width: 150},
-   {field: 'cost', headerName: 'cost', width: 150}
+   {field: 'cost', headerName: 'cost', width: 150},
+   {field: '', headerName: 'Freshness', width: 150}
 ];
 
 interface Props {

@@ -43,7 +43,7 @@ export const PisteBox: FC<Props> = (
    const data: DataRow[] = _data as DataRow[];
    data.forEach((item, index) => {
       if(item.isSelected === undefined) {
-         item.isSelected === false;
+         item.isSelected = false;
       }
    });
 

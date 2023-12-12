@@ -1,6 +1,17 @@
-import { Dialog, DialogContent, DialogTitle, FormLabel, TextField } from "@mui/material";
+import { 
+   Button, 
+   Dialog, 
+   DialogActions, 
+   DialogContent, 
+   DialogTitle, 
+   FormLabel, 
+   TextField 
+} from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { FC, useState } from "react";
+
+import _stationData from "../../data/station.json";
+import { Station } from "types";
 
 interface Props {
    open: boolean;
@@ -10,6 +21,8 @@ interface Props {
 export const AddNewTruckDialog: FC<Props> = (
    { open, handleClose }
 ) => {
+   const stationData: Station[] = _stationData as Station[];
+
    const [truckName, setTruckName] = useState("");
    const [startPoint, setStartPoint] = useState("");
    
@@ -28,6 +41,7 @@ export const AddNewTruckDialog: FC<Props> = (
                </div>
                <div>
                   <FormLabel>Start Point</FormLabel>
+                  
                </div>
                <div>
                   <FormLabel>Start time</FormLabel>
@@ -36,6 +50,9 @@ export const AddNewTruckDialog: FC<Props> = (
                
             </form>
          </DialogContent>
+         <DialogActions>
+            <Button onClick={() => {}}> Save </Button>
+         </DialogActions>
       </Dialog>
    );
 }

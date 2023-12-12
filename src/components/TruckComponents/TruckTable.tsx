@@ -1,13 +1,14 @@
-import { Accordion, AccordionDetails, AccordionSummary, Button, Typography, styled } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Button, styled } from "@mui/material";
 import { FC, useState } from "react";
 
-import { RawTruck, Truck } from "types";
 import  _truckData from "../../data/truckData.json";
 import { ExpandMore } from "@mui/icons-material";
 import { ScheduleTable } from "./ScheduleTable";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import { AddNewTruckDialog } from "./AddNewTruckDialog";
+import { useRecoilValue } from "recoil";
+import { truckListAtom } from "atom";
 
 interface Props {}
 
@@ -43,19 +44,10 @@ const StyledDiv = styled("div")(() => ({
 
 export const TruckTable: FC<Props> = () => {
    dayjs.extend(customParseFormat);
-   const rawTruckData: RawTruck[] = _truckData as RawTruck[];
-
+   
    const [openAddNewTruckDialog, setOpenAddNewTruckDialog] = useState(false);
 
-   const truckData: Truck[] = rawTruckData.map((item, index) => {
-      const truck: Truck = {
-         ID: item.ID,
-         startPostion: item.startPostion,
-         startTime: dayjs(item.startTime, "DD.MM.YYYY HH:mm:ss"),
-         schedule: item.schedule,
-      };
-      return truck;
-   });
+   const truckData = useRecoilValue(truckListAtom);
 
    const handleClose = () => {
       setOpenAddNewTruckDialog(false);
