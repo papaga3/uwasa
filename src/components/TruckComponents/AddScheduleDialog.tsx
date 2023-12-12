@@ -17,7 +17,7 @@ import { ConnectionType, DataRow, TruckSchedule } from "types";
 
 import _data from "../../data/data.json";
 import _mapData from "../../data/mapData.json";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { pisteBoxDataRowsAtom } from "atom";
 
 interface CalDistance {
@@ -135,15 +135,18 @@ export const AddScheduleDialog: FC<Props> = (
    }
 ) => {
 
-   let data = useRecoilValue(pisteBoxDataRowsAtom);
-   data = data.filter((item, index) => item.isSelected === false);
-   
+   let [data, setData] = useRecoilState(pisteBoxDataRowsAtom);
+
+   const displayedData = data.filter((item, index) => item.isSelected === false);
+
    const mapData: ConnectionType[] = _mapData as ConnectionType[];
    const [curStartPosition, setCurStartPositon] = useState(truckStartPositon);
    const [curTruckStartTime, setCurTruckStartTime] = useState(truckStartTime);
 
    const { enqueueSnackbar } = useSnackbar();
    const [selectItem, setSelectItem] = useState(data[0]);
+   const [selectIndex, setSelectIndex] = useState(0);
+
    const [numberOfContainer, setNumberOfContainer] = useState(0);
 
    const saveButtonOnClick = () => {
@@ -163,7 +166,6 @@ export const AddScheduleDialog: FC<Props> = (
          
          const newArriveTime = curTruckStartTime.add(hour, "hour").add(minute, "minute");
 
-         console.log(result.path);
          const newTruckSchedule: TruckSchedule = {
             stopID: selectItem.Täytttöpiste,
             packageID: selectItem.Kontti,
@@ -172,7 +174,6 @@ export const AddScheduleDialog: FC<Props> = (
             numberOfContainer: numberOfContainer + 1,
             cost: result.distance * 2,
          }
-         console.log(result.path);
          setCurStartPositon(endPosition);
          setNumberOfContainer(numberOfContainer + 1);
          setCurTruckStartTime(newArriveTime);
@@ -195,12 +196,15 @@ export const AddScheduleDialog: FC<Props> = (
                   label="Kontti"
                >
                   { 
-                     data.map((item, index) => {
+                     displayedData.map((item, index) => {
                         return (
                            <MenuItem
                               key={`kontti-${index}`}
                               value={item.Kontti}
-                              onClick={() => setSelectItem(item)}
+                              onClick={() => { 
+                                 setSelectItem(item); 
+                                 setSelectIndex(index); 
+                              }}
                            >
                               {item.Kontti} - {item.Täytttöpiste}
                            </MenuItem>
