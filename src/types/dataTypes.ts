@@ -25,7 +25,8 @@ export interface DataRow {
    Kontti: number;
    Tuote: string;
    Ulostuloaika: string;
-   tunti: string; 
+   tunti: string;
+   isSelected?: boolean;
 }
 
 /**
@@ -84,6 +85,7 @@ export interface TruckSchedule {
    // DepartureTime: string;
    numberOfContainer: number;
    distance: number;
+   cost: number;
 }
 
 /**

@@ -165,7 +165,8 @@ export const AddScheduleDialog: FC<Props> = (
             packageID: selectItem.Kontti,
             arriveTime: newArriveTime.format("DD.MM.YYYY HH:mm"),
             distance: result.distance,
-            numberOfContainer: numberOfContainer + 1
+            numberOfContainer: numberOfContainer + 1,
+            cost: result.distance * 2,
          }
          console.log(result.path);
          setCurStartPositon(endPosition);

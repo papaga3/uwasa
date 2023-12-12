@@ -21,7 +21,7 @@ const StyledDiv = styled("div")(() => ({
       border: "2px dotted blue",
       display: "block",
       width: "500px",
-      height: "1500px"
+      height: "1000px"
    },
 }));
 
@@ -41,6 +41,11 @@ export const PisteBox: FC<Props> = (
    const pisteID = useRecoilValue(pisteIdAtom);
 
    const data: DataRow[] = _data as DataRow[];
+   data.forEach((item, index) => {
+      if(item.isSelected === undefined) {
+         item.isSelected === false;
+      }
+   });
 
    let rows: DataRow[];
 
