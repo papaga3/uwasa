@@ -3,6 +3,7 @@ import { createHashRouter } from "react-router-dom";
 import { DisplayTable, NavBar } from "components";
 import { RouteEnum } from "./routeConstant";
 import { StationMap } from "components/MapComponents";
+import { LeafletMap } from "components/RealMapComponents";
 
 const router = createHashRouter([
    {
@@ -17,6 +18,10 @@ const router = createHashRouter([
    {
       path: RouteEnum.mapPage,
       element: <StationMap />
+   }, 
+   {
+      path: RouteEnum.leafletPage,
+      element: <LeafletMap />
    }
 ]);
 

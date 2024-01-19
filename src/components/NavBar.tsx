@@ -11,7 +11,8 @@ const classes = {
   root: `${PREFIX}-toolBar`,
   navLinks: `${PREFIX}-navLink`,
   logo: `${PREFIX}-logo`,
-  link: `${PREFIX}-link`
+  link: `${PREFIX}-link`,
+  leafletPage: `${PREFIX}-leafletPage`
 };
 
 const StyledToolbar = styled(Toolbar)(() => ({
@@ -50,6 +51,7 @@ export const NavBar: FC<Props> = () => {
                   <NavLink to={RouteEnum.mainPage} end className={classes.link}> Home </NavLink>
                   <NavLink to={RouteEnum.displayTable} end className={classes.link}> Display Table </NavLink>
                   <NavLink to={RouteEnum.mapPage} end className={classes.link}> Map Page </NavLink>
+                  <NavLink to={RouteEnum.leafletPage} end className={classes.link}>Leaflet Page</NavLink>
                </div>
             </StyledToolbar>
          </AppBar>

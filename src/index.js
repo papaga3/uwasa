@@ -7,6 +7,7 @@ import { SnackBarProvider } from "notistack";
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
+import 'leaflet/dist/leaflet.css'
 import './index.css';
 import router from 'routes/router';
 
