@@ -2,6 +2,7 @@ import { LatLngExpression } from "leaflet";
 import { FC, useRef, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMapEvent, useMapEvents } from "react-leaflet";
 import { LocationMarker } from "./LocationMarker";
+import { NavBar } from "components/NavBar";
 
 interface Props {}
 
@@ -14,11 +15,12 @@ export const LeafletMap: FC<Props> = () => {
 
    return (
       <div>
+         <NavBar />
          <MapContainer
             center={centerPosition}
             ref={mapRef}
-            style={{height: "1000px", width: "1000px"}}
-            zoom={13}
+            style={{height: "800px", width: "1200px"}}
+            zoom={8}
          >
             <TileLayer
                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
