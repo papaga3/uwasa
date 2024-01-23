@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const WarehouseMarker: FC<Props> = (
-   { position }
+   { position, popupText }
 ) => {
 
    const markerRef = useRef(null);
@@ -26,9 +26,10 @@ export const WarehouseMarker: FC<Props> = (
       <Marker
          position={position} 
          ref={markerRef}
+         icon={warehouseIcon}
       >
       <Popup>
-         {}
+         { popupText }
       </Popup>
    </Marker>
    );
