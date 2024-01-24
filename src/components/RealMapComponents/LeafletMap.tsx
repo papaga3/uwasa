@@ -24,11 +24,10 @@ export const LeafletMap: FC<Props> = () => {
 
    return (
       <div>
-         <NavBar />
          <MapContainer
             center={centerPosition}
             ref={mapRef}
-            style={{height: "800px", width: "1200px"}}
+            style={{height: "1000px", width: "1000px"}}
             zoom={7}
          >
             <TileLayer

@@ -1,10 +1,12 @@
 import { Warehouse } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { blue } from "@mui/material/colors";
+import { pisteIdAtom } from "atom";
 import { LatLngExpression, divIcon } from "leaflet";
 import { FC, useRef } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Marker, Popup } from "react-leaflet";
+import { useRecoilState } from "recoil";
 
 interface Props {
    position: LatLngExpression;
@@ -14,6 +16,8 @@ interface Props {
 export const WarehouseMarker: FC<Props> = (
    { position, popupText }
 ) => {
+
+   const [pisteID, setPisteID] = useRecoilState(pisteIdAtom);
 
    const markerRef = useRef(null);
 
@@ -26,8 +30,6 @@ export const WarehouseMarker: FC<Props> = (
       iconSize: [30, 30]
    });
 
-   console.log(warehouseIcon);
-
    return (
       <Marker
          position={position} 
@@ -38,7 +40,12 @@ export const WarehouseMarker: FC<Props> = (
          { 
             popupText.map(
                (item, index) => (
-                  <Button key={`warehouse-popup-${index}`}>{item}</Button>
+                  <Button 
+                     key={`warehouse-popup-${index}`}
+                     onClick={ () => setPisteID(`${item}`) }
+                  >
+                     {item}
+                  </Button>
                )
             ) 
          }

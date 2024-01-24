@@ -19,10 +19,10 @@ const router = createHashRouter([
       path: RouteEnum.mapPage,
       element: <StationMap />
    }, 
-   {
+   /*{
       path: RouteEnum.leafletPage,
       element: <LeafletMap />
-   }
+   }*/
 ]);
 
 export default router;

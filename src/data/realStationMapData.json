@@ -1,6 +1,6 @@
 [
    {
-      "popupText": [ "ATRNS", "ATRNB" ],
+      "popupText": [ "ATRNMS", "ATRNMB" ],
       "position": {
          "lat": 62.84221910580991,
          "lng": 22.955672671164827

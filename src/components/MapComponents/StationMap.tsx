@@ -15,6 +15,7 @@ import { TruckTable } from "components/TruckComponents/TruckTable";
 import _stationData from "../../data/station.json";
 import _mapData from "../../data/mapData.json";
 import _edgeList from "../../data/edgeList.json";
+import { LeafletMap } from "components/RealMapComponents";
 
 interface Props {};
 
@@ -62,7 +63,7 @@ export const StationMap: FC<Props> = () => {
                      maxWidth: "100%",
                      maxHeight: "calc(100vh - 50px)",
                   }}>
-                     <div style={{ width: "1000px", height: "1000px" }}>
+                    {/* <div style={{ width: "1000px", height: "1000px" }}>
                      { 
                         stationData.map((item, index) => {
                            return <StationBox key={index} station={item} />
@@ -79,7 +80,8 @@ export const StationMap: FC<Props> = () => {
                               />);
                         })
                      }
-                     </div>
+                  </div> */}
+                     <LeafletMap />
                   </TransformComponent>
                </TransformWrapper>
                <PisteBox />

@@ -28,11 +28,11 @@ const columns: GridColDef[] = [
 
 export const DisplayTable: FC<Props> = () => {
    const data: DataRow[] = _data as DataRow[];
-   data.forEach((item, index) => {
+   /*data.forEach((item, index) => {
       if(item.index === undefined) {
          item.index = index;
       }
-   });
+   });*/
 
    const stationData: Station[] = _stationData as Station[];
 
