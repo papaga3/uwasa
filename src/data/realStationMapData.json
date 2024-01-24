@@ -7,6 +7,13 @@
       }
    },
    {
+      "popupText": ["HKSRAU"],
+      "position": {
+         "lat": 61.15865637543931, 
+         "lng": 21.597892357670343
+      }
+   },
+   {
       "popupText": ["Honkajonki"],
       "position": {
          "lat": 61.98053783624813, 
