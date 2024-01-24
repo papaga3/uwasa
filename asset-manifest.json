@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/uwasa/static/css/main.1148820b.css",
-    "main.js": "/uwasa/static/js/main.b44dd859.js",
+    "main.js": "/uwasa/static/js/main.82b613a1.js",
     "static/js/787.7497aae7.chunk.js": "/uwasa/static/js/787.7497aae7.chunk.js",
     "index.html": "/uwasa/index.html",
     "main.1148820b.css.map": "/uwasa/static/css/main.1148820b.css.map",
-    "main.b44dd859.js.map": "/uwasa/static/js/main.b44dd859.js.map",
+    "main.82b613a1.js.map": "/uwasa/static/js/main.82b613a1.js.map",
     "787.7497aae7.chunk.js.map": "/uwasa/static/js/787.7497aae7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1148820b.css",
-    "static/js/main.b44dd859.js"
+    "static/js/main.82b613a1.js"
   ]
 }
