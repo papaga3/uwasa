@@ -8,7 +8,7 @@ import { NavBar } from "components/NavBar";
 import { WarehouseMarker } from "./WarehouseMarker";
 
 interface StationMapData {
-   popupText: string;
+   popupText: string[];
    position: LatLngExpression;
 }
 
@@ -29,7 +29,7 @@ export const LeafletMap: FC<Props> = () => {
             center={centerPosition}
             ref={mapRef}
             style={{height: "800px", width: "1200px"}}
-            zoom={8}
+            zoom={7}
          >
             <TileLayer
                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -39,6 +39,7 @@ export const LeafletMap: FC<Props> = () => {
                { 
                   stationMapDataList.map((item, index) => (
                      <WarehouseMarker 
+                        key={`warehouse-${index}`}
                         popupText={item.popupText} 
                         position={item.position}
                      />
