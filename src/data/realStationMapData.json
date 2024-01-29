@@ -1,9 +1,23 @@
 [
    {
+      "popupText": ["RONKMI"],
+      "position": {
+         "lat": "65.77927720642425",
+         "lng": "24.556295824516706"
+      }
+   },
+   {
       "popupText": [ "ATRNMS", "ATRNMB" ],
       "position": {
          "lat": 62.84221910580991,
          "lng": 22.955672671164827
+      }
+   },
+   {
+      "popupText": ["SNEPIE"],
+      "position": {
+         "lat": 63.663657339607866,
+         "lng": 22.763078
       }
    },
    {
@@ -14,10 +28,73 @@
       }
    },
    {
+      "popupText": ["ATRKJI"],
+      "position": {
+         "lat": 0.0, 
+         "lng": 0.0
+      }
+   },
+   {
+      "popupText": ["AVAKST"],
+      "position": {
+         "lat": 63.57117729070681, 
+         "lng": 23.685161657672
+      }
+   },
+   {
+      "popupText": ["LKASKL"],
+      "position": {
+         "lat": 61.063723875502546, 
+         "lng": 22.325573126535335
+      }
+   },
+   {
       "popupText": ["Honkajonki"],
       "position": {
          "lat": 61.98053783624813, 
          "lng": 22.28648205096797 
+      }
+   },
+   {
+      "popupText": ["TAPTAM"],
+      "position": {
+         "lat": 61.51588944162858, 
+         "lng": 23.669209628836
+      }
+   },
+   {
+      "popupText": ["ATRSHL"],
+      "position": {
+         "lat": 0.0, 
+         "lng": 0.0
+      }
+   },
+   {
+      "popupText": ["HKSFRS", "AVAFRS"],
+      "position": {
+         "lat": 60.824242535782666, 
+         "lng": 23.59136929768409
+      }
+   },
+   {
+      "popupText": ["AVAIIS"],
+      "position": {
+         "lat": 0.0, 
+         "lng": 0.0
+      }
+   },
+   {
+      "popupText": ["Outokumpu"],
+      "position": {
+         "lat": 62.7097677595753, 
+         "lng": 28.992998028836002
+      }
+   },
+   {
+      "popupText": ["ATRJKL"],
+      "position": {
+         "lat": 62.274436195726025,
+         "lng": 25.796175899999998
       }
    }
 ]
