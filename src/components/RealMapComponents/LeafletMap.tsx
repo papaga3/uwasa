@@ -6,6 +6,7 @@ import  _stationMapData from "../../data/realStationMapData.json";
 import { LocationMarker } from "./LocationMarker";
 import { NavBar } from "components/NavBar";
 import { WarehouseMarker } from "./WarehouseMarker";
+import RoutingMachine from "./RoutingMachine";
 
 interface StationMapData {
    popupText: string[];
@@ -44,6 +45,7 @@ export const LeafletMap: FC<Props> = () => {
                      />
                   )) 
                }
+               <RoutingMachine />
          </MapContainer>
       </div>
    );
