@@ -17,7 +17,7 @@ const createRoutingMachine = () => {
   const instance = L.Routing.control({
     waypoints: [
       L.latLng(65.77927720642425,24.556295824516706),
-      L.latLng(62.84221910580991, 22.955672671164827)
+      L.latLng(62.84221910580991, 22.955672671164827),
     ],
     lineOptions: {
       styles: [{color: 'black', weight: 4}],
@@ -26,6 +26,10 @@ const createRoutingMachine = () => {
       missingRouteStyles: [{color: 'red', weight: 3}]
     },
     show: false,
+    //@ts-ignore
+    createMarker: function () {
+      return null;
+    }
   });
   return instance;
 }
