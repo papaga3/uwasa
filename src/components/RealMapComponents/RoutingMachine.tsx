@@ -1,24 +1,15 @@
-import L from "leaflet";
+import L, { ControlOptions, LatLng, LatLngExpression } from "leaflet";
 import { createControlComponent } from '@react-leaflet/core'
 import "leaflet-routing-machine";
-import { FC } from "react";
 
+interface Props extends ControlOptions {
+  waypoints: LatLng[];
+}
 
-interface Props {}
-
-const createRoutingMachine = () => {
-  const formatter = new L.Routing.Formatter({
-    language: "en",
-    units: "metric",
-    distanceTemplate: "{value} {unit}",
-  });
-
+const createRoutingMachine = (props: Props) => {
   
   const instance = L.Routing.control({
-    waypoints: [
-      L.latLng(65.77927720642425,24.556295824516706),
-      L.latLng(62.84221910580991, 22.955672671164827),
-    ],
+    waypoints: props.waypoints,
     lineOptions: {
       styles: [{color: 'black', weight: 4}],
       missingRouteTolerance: 1,
@@ -31,6 +22,15 @@ const createRoutingMachine = () => {
       return null;
     }
   });
+  instance.on('routesfound', function(e) {
+    var routes = e.routes;
+    var summary = routes[0].summary;
+    console.log(routes);
+    console.log(summary);
+    // alert distance and time in km and minutes
+    alert('Total distance is ' + summary.totalDistance / 1000 + ' km and total time is ' + Math.round(summary.totalTime % 3600 / 60) + ' minutes');
+  });
+ 
   return instance;
 }
 

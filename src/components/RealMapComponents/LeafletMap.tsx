@@ -1,6 +1,6 @@
-import { LatLngExpression } from "leaflet";
-import { FC, useRef, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer, useMapEvent, useMapEvents } from "react-leaflet";
+import { LatLng, LatLngExpression } from "leaflet";
+import { FC, useRef } from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
 
 import  _stationMapData from "../../data/realStationMapData.json";
 import { LocationMarker } from "./LocationMarker";
@@ -10,7 +10,7 @@ import RoutingMachine from "./RoutingMachine";
 
 interface StationMapData {
    popupText: string[];
-   position: LatLngExpression;
+   position: LatLng;
 }
 
 interface Props {}
@@ -45,7 +45,7 @@ export const LeafletMap: FC<Props> = () => {
                      />
                   )) 
                }
-               <RoutingMachine />
+               <RoutingMachine waypoints={[stationMapDataList[0].position, stationMapDataList[1].position]}/>
          </MapContainer>
       </div>
    );

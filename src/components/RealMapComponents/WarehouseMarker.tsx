@@ -2,14 +2,14 @@ import { Warehouse } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import { pisteIdAtom } from "atom";
-import { LatLngExpression, divIcon } from "leaflet";
+import { LatLng, divIcon } from "leaflet";
 import { FC, useRef } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { Marker, Popup } from "react-leaflet";
 import { useRecoilState } from "recoil";
 
 interface Props {
-   position: LatLngExpression;
+   position: LatLng;
    popupText: string[];
 }
 
