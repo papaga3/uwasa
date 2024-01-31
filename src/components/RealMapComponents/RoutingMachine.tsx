@@ -1,3 +1,4 @@
+import { useState } from "react";
 import L, { ControlOptions, LatLng, LatLngExpression } from "leaflet";
 import { createControlComponent } from '@react-leaflet/core'
 import "leaflet-routing-machine";
@@ -7,7 +8,6 @@ interface Props extends ControlOptions {
 }
 
 const createRoutingMachine = (props: Props) => {
-  
   const instance = L.Routing.control({
     waypoints: props.waypoints,
     lineOptions: {

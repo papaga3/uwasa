@@ -1,4 +1,5 @@
 import dayjs, { Dayjs } from "dayjs";
+import { LatLng } from "leaflet";
 
 /**
  * Position of a draggable div on screen
@@ -126,4 +127,15 @@ export interface Edge {
    v1: string;
    v2: string;
    distance: number;
+}
+
+/**
+ * Data used for current selected truck
+ */
+export interface TruckData {
+   truckID: string;
+   waypoints: {
+      name: string;
+      position: LatLng;
+   }[];
 }
