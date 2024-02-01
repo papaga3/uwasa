@@ -133,7 +133,7 @@ export interface Edge {
  * Data used for current selected truck
  */
 export interface TruckData {
-   truckID: string;
+   truckID: string | undefined;
    waypoints: {
       name: string;
       position: LatLng;

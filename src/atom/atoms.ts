@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 import dayjs from "dayjs";
 
-import { DataRow, RawTruck, Truck } from "types";
+import { DataRow, RawTruck, Truck, TruckData } from "types";
 import _data from "../data/data.json";
 import  _truckData from "../data/truckData.json";
 
@@ -15,6 +15,8 @@ function pisteBoxDataRowsDefault(): DataRow[] {
    return data;
 }
 
+// Create a default truck list
+// This should be replaced by an actual call to a database
 function truckListDefault(): Truck[] {
    const rawTruckData: RawTruck[] = _truckData as RawTruck[];
 
@@ -28,6 +30,13 @@ function truckListDefault(): Truck[] {
       return truck;
    });
    return truckData;
+}
+// Create a default truck data
+function truckDataDefault(): TruckData {
+   return {
+      truckID: undefined,
+      waypoints: []
+   }
 }
 
 export const pisteIdAtom = atom({
@@ -48,4 +57,9 @@ export const pisteBoxDataRowsAtom = atom({
 export const truckListAtom = atom({
    key: "truckList",
    default: truckListDefault(),
+});
+
+export const truckDataAtom = atom({
+   key: "truckData",
+   default: truckDataDefault(),
 });
