@@ -59,6 +59,8 @@ export const truckListAtom = atom({
    default: truckListDefault(),
 });
 
+// truck data atom holds data of the current selected trucks
+// It contains the truck name and a list of waypoints
 export const truckDataAtom = atom({
    key: "truckData",
    default: truckDataDefault(),

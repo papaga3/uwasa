@@ -47,7 +47,14 @@ export const TruckTable: FC<Props> = () => {
    
    const [openAddNewTruckDialog, setOpenAddNewTruckDialog] = useState(false);
 
-   const truckData = useRecoilValue(truckListAtom);
+   const truckList = useRecoilValue(truckListAtom);
+
+   const [currentTruck, setCurrentTruck] = useState(""); 
+
+   const handleTruckChange = (truckID: string) => (event: React.SyntheticEvent, isExpanded: boolean) => 
+   {
+      setCurrentTruck(truckID);
+   }
 
    const handleClose = () => {
       setOpenAddNewTruckDialog(false);
@@ -65,9 +72,13 @@ export const TruckTable: FC<Props> = () => {
          </div>
          <AddNewTruckDialog open={openAddNewTruckDialog} handleClose={handleClose}/>
          {
-            truckData.map((item, index) => {
+            truckList.map((item, index) => {
                return(
-                  <Accordion key={`truck-${index}-${item.ID}`}>
+                  <Accordion 
+                     key={`truck-${index}-${item.ID}`}
+                     expanded={currentTruck === item.ID}
+                     onChange={handleTruckChange(item.ID)}
+                  >
                      <AccordionSummary
                         expandIcon={<ExpandMore />}
                         id={`truck-${index}`}
