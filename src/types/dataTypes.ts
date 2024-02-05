@@ -131,6 +131,8 @@ export interface Edge {
 
 /**
  * Data used for current selected truck
+ * @member truckID: current ID of selected truck
+ * @member waypoints: a list of way points used to find truck route
  */
 export interface TruckData {
    truckID: string | undefined;
