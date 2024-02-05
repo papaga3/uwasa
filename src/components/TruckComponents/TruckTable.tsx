@@ -7,8 +7,9 @@ import { ScheduleTable } from "./ScheduleTable";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat"
 import { AddNewTruckDialog } from "./AddNewTruckDialog";
-import { useRecoilValue } from "recoil";
-import { truckListAtom } from "atom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { truckDataAtom, truckListAtom } from "atom";
+import { LatLng } from "leaflet";
 
 interface Props {}
 
@@ -49,11 +50,11 @@ export const TruckTable: FC<Props> = () => {
 
    const truckList = useRecoilValue(truckListAtom);
 
-   const [currentTruck, setCurrentTruck] = useState(""); 
+   const [truckData, setTruckData] = useRecoilState(truckDataAtom);
 
    const handleTruckChange = (truckID: string) => (event: React.SyntheticEvent, isExpanded: boolean) => 
    {
-      setCurrentTruck(truckID);
+      const waypoints: LatLng[] = [];
    }
 
    const handleClose = () => {
@@ -76,7 +77,7 @@ export const TruckTable: FC<Props> = () => {
                return(
                   <Accordion 
                      key={`truck-${index}-${item.ID}`}
-                     expanded={currentTruck === item.ID}
+                     expanded={truckData.truckID === item.ID}
                      onChange={handleTruckChange(item.ID)}
                   >
                      <AccordionSummary
