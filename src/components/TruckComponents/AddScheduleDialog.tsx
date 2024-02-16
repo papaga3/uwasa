@@ -10,20 +10,36 @@ import {
    Select, 
    SelectChangeEvent
 } from "@mui/material";
-import { FC, useMemo, useState } from "react";
-import dayjs, { Dayjs } from "dayjs";
+import { FC, useState } from "react";
+import { Dayjs } from "dayjs";
 import { SnackbarProvider, useSnackbar } from "notistack";
 
-import { ConnectionType, DataRow, TruckSchedule } from "types";
+import { ConnectionType, StationMapData, TruckSchedule } from "types";
 
+import _realStationPosition from "../../data/realStationMapData.json";
 import _data from "../../data/data.json";
 import _mapData from "../../data/mapData.json";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { pisteBoxDataRowsAtom } from "atom";
+import { LatLng } from "leaflet";
 
 interface CalDistance {
    path: string[];
    distance: number;
+}
+
+function getStationLatLngFromName (
+   realMapData: StationMapData[],
+   stationName: string
+): LatLng {
+   realMapData.forEach((item, index) => {
+      item.popupText.forEach((i, index) => {
+         if(i === stationName) {
+            return item.position
+         }
+      });
+   });
+   return new LatLng(0, 0);
 }
 
 function calculateDistance(
@@ -134,6 +150,7 @@ export const AddScheduleDialog: FC<Props> = (
 
    let [data, setData] = useRecoilState(pisteBoxDataRowsAtom);
 
+   const realMapData = _realStationPosition;
    const mapData: ConnectionType[] = _mapData as ConnectionType[];
    const [curStartPosition, setCurStartPositon] = useState(truckStartPositon);
    const [curTruckStartTime, setCurTruckStartTime] = useState(truckStartTime);

@@ -7,11 +7,7 @@ import { LocationMarker } from "./LocationMarker";
 import { NavBar } from "components/NavBar";
 import { WarehouseMarker } from "./WarehouseMarker";
 import RoutingMachine from "./RoutingMachine";
-
-interface StationMapData {
-   popupText: string[];
-   position: LatLng;
-}
+import { StationMapData } from "types";
 
 interface Props {}
 

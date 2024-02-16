@@ -142,3 +142,13 @@ export interface TruckData {
       position: LatLng;
    }[];
 }
+
+/**
+ * Represent station and its position
+ * @member popupText : the names of station at this location
+ * @member position: latitude and longitude of this location
+ */
+export interface StationMapData {
+   popupText: string[];
+   position: LatLng;
+}
