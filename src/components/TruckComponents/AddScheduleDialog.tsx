@@ -150,7 +150,7 @@ export const AddScheduleDialog: FC<Props> = (
 
    let [data, setData] = useRecoilState(pisteBoxDataRowsAtom);
 
-   const realMapData = _realStationPosition;
+   const realMapData: StationMapData[] = _realStationPosition as StationMapData[];
    const mapData: ConnectionType[] = _mapData as ConnectionType[];
    const [curStartPosition, setCurStartPositon] = useState(truckStartPositon);
    const [curTruckStartTime, setCurTruckStartTime] = useState(truckStartTime);
@@ -185,6 +185,7 @@ export const AddScheduleDialog: FC<Props> = (
 
          const newTruckSchedule: TruckSchedule = {
             stopID: selectItem.Täytttöpiste,
+            stopPosition: getStationLatLngFromName(realMapData, endPosition),
             packageID: selectItem.Kontti,
             arriveTime: newArriveTime.format("DD.MM.YYYY HH:mm"),
             distance: result.distance,
