@@ -81,6 +81,7 @@ export interface Package {
  */
 export interface TruckSchedule {
    stopID: string;
+   stopPosition: LatLng;
    packageID: number;
    arriveTime: string;
    // DepartureTime: string;

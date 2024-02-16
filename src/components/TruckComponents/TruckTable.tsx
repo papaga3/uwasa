@@ -10,6 +10,7 @@ import { AddNewTruckDialog } from "./AddNewTruckDialog";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { truckDataAtom, truckListAtom } from "atom";
 import { LatLng } from "leaflet";
+import { TruckData } from "types";
 
 interface Props {}
 
@@ -54,7 +55,21 @@ export const TruckTable: FC<Props> = () => {
 
    const handleTruckChange = (truckID: string) => (event: React.SyntheticEvent, isExpanded: boolean) => 
    {
-      const waypoints: LatLng[] = [];
+      if(truckID !== truckData.truckID) {
+
+         const truckWithID = truckList.find((truck, index) => {
+            return (truck.ID === truckID)
+         });
+         if(truckWithID === undefined) {
+            console.error("Error in getting truck with this ID: " + truckID);
+         } else {
+            const waypoints = truckWithID.schedule.map((item, index) => {
+               return ( { name: item.stopID, position: item.stopPosition } );
+            });
+            const newTruckData: TruckData = { truckID: truckID, waypoints: waypoints};
+            setTruckData(newTruckData);
+         }
+      }
    }
 
    const handleClose = () => {
